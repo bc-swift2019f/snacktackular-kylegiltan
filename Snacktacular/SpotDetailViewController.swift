@@ -97,7 +97,11 @@ class SpotDetailViewController: UIViewController {
             let destination = segue.destination as! ReviewTableViewController
             destination.spot = spot
             let selectedIndexPath = tableView.indexPathForSelectedRow!
+<<<<<<< HEAD
             destination.review = reviews.reviewArray[selectedIndexPath.row]
+=======
+            destination.review = reviews.reviewArray[selectedIndexPtath.row]
+>>>>>>> 10987e9c838dcfff482237da2b41f36cf1190957
         default:
             print("No segue in SpotDetailViewController")
         }
