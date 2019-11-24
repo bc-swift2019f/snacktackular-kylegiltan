@@ -19,7 +19,7 @@ class Review{
     
 // my old code
     var dictionary: [String: Any]{
-        return ["title": title, "text": text, "rating": rating, "reviewerUserID": reviewerUserID, "date": date, "documentID": documentID]
+        return ["title": title, "text": text, "rating": rating, "reviewerUserID": reviewerUserID, "date": date]
     }
     
 //new code
@@ -78,7 +78,9 @@ class Review{
                 }
                 else{
                     print("document updated with ref DI \(ref.documentID)")
-                    completed(true)
+                    spot.updateAverageRating {
+                        completed(true)
+                    }
                 }
             }
         }
@@ -90,8 +92,10 @@ class Review{
                     completed(false)
                 }
                 else{
-                    print("document created with ref DI \(ref?.documentID ?? "unknown")")
-                    completed(true)
+                    print("document created with ref ID \(ref?.documentID ?? "unknown")")
+                    spot.updateAverageRating {
+                        completed(true)
+                    }
                 }
             }
         }
@@ -105,6 +109,9 @@ class Review{
                 completed(false)
             }
             else{
+                spot.updateAverageRating {
+                    completed(true)
+                }
                 completed(true)
             }
             
