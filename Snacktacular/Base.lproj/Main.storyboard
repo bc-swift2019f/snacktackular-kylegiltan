@@ -688,12 +688,12 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" leftItemsSupplementBackButton="YES" id="zoW-rK-Gnm">
-                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="p6K-oX-udh">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" style="plain" id="p6K-oX-udh">
                             <connections>
                                 <action selector="cancelButtonPressed:" destination="kGe-x6-6dp" id="o0M-TM-LiV"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="6FU-8P-qG4">
+                        <barButtonItem key="rightBarButtonItem" title="Save" style="plain" id="6FU-8P-qG4">
                             <connections>
                                 <action selector="saveButtonPressed:" destination="kGe-x6-6dp" id="3Pg-pt-Ufn"/>
                             </connections>
@@ -708,14 +708,14 @@
                         <outlet property="nameLabel" destination="3Cb-NT-mJP" id="lZ0-KZ-b5B"/>
                         <outlet property="postedByLabel" destination="rGZ-eG-WVu" id="th1-1Y-Pdk"/>
                         <outlet property="reviewDateLabel" destination="1Z4-1z-8rU" id="umt-AD-Usv"/>
-                        <outlet property="reviewTitle" destination="1cP-VA-Zcn" id="Bbl-8B-ZGY"/>
-                        <outlet property="reviewView" destination="MtA-H0-Kbu" id="Xu6-g4-eP5"/>
+                        <outlet property="reviewTextView" destination="MtA-H0-Kbu" id="Xu6-g4-eP5"/>
+                        <outlet property="reviewTitleField" destination="1cP-VA-Zcn" id="Bbl-8B-ZGY"/>
                         <outlet property="saveBarButton" destination="6FU-8P-qG4" id="b18-VJ-ktH"/>
-                        <outletCollection property="starButtonConnection" destination="qDO-Ve-on6" collectionClass="NSMutableArray" id="kxj-4T-q1b"/>
-                        <outletCollection property="starButtonConnection" destination="Ewy-Bb-Hbo" collectionClass="NSMutableArray" id="cq1-3j-jcT"/>
-                        <outletCollection property="starButtonConnection" destination="m0l-sn-ar3" collectionClass="NSMutableArray" id="ixg-6r-6p1"/>
-                        <outletCollection property="starButtonConnection" destination="KB5-Ki-c4R" collectionClass="NSMutableArray" id="EtE-QB-AjO"/>
-                        <outletCollection property="starButtonConnection" destination="3Uv-Pv-0Q0" collectionClass="NSMutableArray" id="77j-Bu-Pj6"/>
+                        <outletCollection property="starButtonCollection" destination="qDO-Ve-on6" collectionClass="NSMutableArray" id="kxj-4T-q1b"/>
+                        <outletCollection property="starButtonCollection" destination="Ewy-Bb-Hbo" collectionClass="NSMutableArray" id="cq1-3j-jcT"/>
+                        <outletCollection property="starButtonCollection" destination="m0l-sn-ar3" collectionClass="NSMutableArray" id="ixg-6r-6p1"/>
+                        <outletCollection property="starButtonCollection" destination="KB5-Ki-c4R" collectionClass="NSMutableArray" id="EtE-QB-AjO"/>
+                        <outletCollection property="starButtonCollection" destination="3Uv-Pv-0Q0" collectionClass="NSMutableArray" id="77j-Bu-Pj6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DF6-Bo-J9u" userLabel="First Responder" sceneMemberID="firstResponder"/>
