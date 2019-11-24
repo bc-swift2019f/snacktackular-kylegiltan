@@ -41,6 +41,7 @@ class Photo{
         let description = dictionary["description"] as! String? ?? ""
         let postedBy = dictionary["postedBy"] as! String? ?? ""
         //        let date = dictionary["date"] as! Date? ?? Date()
+        let time = dictionary["date"] as! Timestamp?
         let date = time?.dateValue() ?? Date()
 //        let timeIntervalDate = dictionary["date"] as! TimeInterval? ?? TimeInterval()
 //        let date = Date(timeIntervalSince1970: timeIntervalDate)

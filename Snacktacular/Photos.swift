@@ -44,13 +44,13 @@ class Photos{
                         if loadAttempts >= (querySnapshot!.count){
                             return completed()
                         }
-                        else{
-                            let image = UIImage(data: data!)
-                            photo.image = image!
-                            loadAttempts += 1
-                            if loadAttempts >= (querySnapshot!.count){
-                                return completed()
-                            }
+                    }
+                    else{
+                        let image = UIImage(data: data!)
+                        photo.image = image!
+                        loadAttempts += 1
+                        if loadAttempts >= (querySnapshot!.count){
+                            return completed()
                         }
                     }
                 }
