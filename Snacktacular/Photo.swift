@@ -15,6 +15,9 @@ class Photo{
     var postedBy: String
     var date: Date
     var documentUUID: String //Universal Unique ID
+    var dictionary: [String: Any]{
+        return ["description": description, "postedBy": postedBy, "date": date]
+    }
     
     init(image:UIImage, description: String, postedBy: String, date: Date, documentUUID: String){
         self.image = image
@@ -29,4 +32,51 @@ class Photo{
         let postedBy = Auth.auth().currentUser?.email ?? "unknown user"
         self.init(image: UIImage(), description: "", postedBy: postedBy, date: Date(), documentUUID: "")
     }
+    
+    func saveData(spot: Spot, completed: @escaping (Bool) -> ()){
+        let db = Firestore.firestore()
+        let storage = Storage.storage()
+        //convert photo.image to a Data type so it canbe saved by Firebase Storage
+        guard let photoData = self.image.jpegData(compressionQuality: 0.5) else{
+            print("ERROR COULD NOT CONVER IMAGE TO DATA FORMAT")
+            return completed(false)
+        }
+        let uploadMetaData = StorageMetadata()
+        uploadMetaData.contentType = "image/jpeg"
+        documentUUID = UUID().uuidString //generate a unique ID to use for the photo image's name
+        //create a ref to upload storage to spot.documentUUID's folder(bucker). w the name we created
+        let storageRef = storage.reference().child(spot.documentID).child(self.documentUUID)
+        let uploadTask = storageRef.putData(photoData, metadata: uploadMetaData){
+            metadata, error in
+            guard error == nil else{
+                print("ERROR DURING .PUT DATA STORAGE UPLOAD FOR REFERENCE \(storageRef) ERROR \(error! .localizedDescription)")
+                return
+            }
+            print("UPLOAD WORKED! METADATA IS \(metadata)")
+        }
+        uploadTask.observe(.success) { (snapshot) in
+            //create dictionary representing the data we want to save
+            let dataToSave = self.dictionary
+            //this will either create a new doc at documentUUID or update the existing doc
+            let ref = db.collection("spots").document(spot.documentID).collection("photos").document(self.documentUUID)
+            ref.setData(dataToSave){(error) in
+                if let error = error{
+                    print("error updateding doc \(self.documentUUID) in spot \(spot.documentID) \(error.localizedDescription)")
+                    completed(false)
+                }
+                else{
+                    print("document updated with ref DI \(ref.documentID)")
+                    completed(true)
+                }
+            }
+        }
+        uploadTask.observe(.failure) { (snapshot) in
+            if let error = snapshot.error{
+                print("ERROR UPLOAD TASK FOR FILE \(self.documentUUID) failed in spot \(spot.documentID)")
+            }
+            return completed(false)
+        }
+        
+    }
+    
 }
