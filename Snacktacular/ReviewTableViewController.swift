@@ -147,6 +147,17 @@ class ReviewTableViewController: UITableViewController {
         leaveViewController()
     }
     
+    @IBAction func deleteButtonPressed(_ sender: UIButton) {
+        review.deleteDate(spot: spot) { (success) in
+            if success{
+                self.leaveViewController()
+            }
+            else{
+                print("ERROR DELETE UNSUCCESSFUL")
+            }
+        }
+    }
+    
     @IBAction func reviewTitleChanged(_ sender: Any) {
         enableDisableSaveButton()
     }
